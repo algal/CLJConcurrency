@@ -20,8 +20,12 @@
 
 @implementation CLJFuture
 
+
 - (instancetype) initWithBlock:(id (^)(void))blockName
 {
+  self = [super init];
+  if (self) {
+
   self.valueQueue = dispatch_queue_create("valuequeue", DISPATCH_QUEUE_SERIAL);
   self.isRealized = NO;
 
@@ -31,8 +35,8 @@
     strongSelf.value = blockName();
     strongSelf.isRealized = YES;
   });
-  
-  return nil;
+  }
+  return self;
 }
 
 - (id) value

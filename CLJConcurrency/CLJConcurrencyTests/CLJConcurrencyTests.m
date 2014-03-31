@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 
+#import "CLJFuture.h"
+
 @interface CLJConcurrencyTests : XCTestCase
 
 @end
@@ -26,9 +28,15 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void) testFuture
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+  CLJFuture * futureSum = [[CLJFuture alloc] initWithBlock:^id{
+    return @(40 +2);
+  }];
+  
+  XCTAssertEqualObjects(@(42), futureSum.value, @"sums interested");
+  
 }
+
 
 @end
