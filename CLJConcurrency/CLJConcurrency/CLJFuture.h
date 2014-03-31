@@ -8,17 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-typedef id(^valueReturning_t)(void);
-
 @interface CLJFuture : NSObject
 
-/** Creates a future, containing the value returned by fn */
+/** Creates a future object, containing the value returned by fn */
 + (instancetype) futureWithValueFromBlock:(id (^)(void))fn;
 
-/** Tells if the future has been realized */
+/** Tells if the future value has been realized */
 @property (assign,nonatomic,readonly) BOOL isRealized;
 
-/** Returns the value returned by fn, or blocks until it can do so */
+/** Returns the value returned by fn, blocking if it is not yet computed */
 @property (strong,nonatomic,readonly) id value;
 
 @end
