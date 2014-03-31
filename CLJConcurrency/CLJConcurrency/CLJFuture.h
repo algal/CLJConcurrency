@@ -11,7 +11,8 @@
 @interface CLJFuture : NSObject
 
 /** Creates a future object, containing the value returned by fn */
-+ (instancetype) futureWithValueFromBlock:(id (^)(void))fn;
++ (instancetype) futureWithValueFromBlock:(id (^)(void))fn
+__attribute__((nonnull (1)));
 
 /** Tells if the future value has been realized */
 @property (assign,nonatomic,readonly) BOOL isRealized;
