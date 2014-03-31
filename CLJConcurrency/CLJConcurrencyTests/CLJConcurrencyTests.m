@@ -30,7 +30,7 @@
 
 - (void) testFutureValue
 {
-  CLJFuture * futureSum = [[CLJFuture alloc] initWithBlock:^id{
+  CLJFuture * futureSum = [CLJFuture futureWithValueFromBlock:^id{
     return @(40 +2);
   }];
   XCTAssertEqualObjects(@(42), futureSum.value, @"sums");
@@ -38,7 +38,7 @@
 
 - (void) testIsRealized
 {
-  CLJFuture * delayedValue = [[CLJFuture alloc] initWithBlock:^id{
+  CLJFuture * delayedValue = [CLJFuture futureWithValueFromBlock:^id{
     sleep(1);
     return @(1);
   }];
@@ -51,7 +51,7 @@
 - (void) testAsyncOrdering
 {
   __block NSMutableArray * results = [NSMutableArray array];
-  CLJFuture * delayedSum = [[CLJFuture alloc] initWithBlock:^id{
+  CLJFuture * delayedSum = [CLJFuture futureWithValueFromBlock:^id{
     sleep(1);
     [results addObject:@"second"];
     return nil;
@@ -69,7 +69,7 @@
 {
   CFAbsoluteTime const start = CFAbsoluteTimeGetCurrent();
   
-  CLJFuture *  v = [[CLJFuture alloc] initWithBlock:^id{
+  CLJFuture *  v = [CLJFuture futureWithValueFromBlock:^id{
     sleep(3);
     return @(1);
   }];

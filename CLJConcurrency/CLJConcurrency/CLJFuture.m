@@ -20,21 +20,24 @@
 
 @implementation CLJFuture
 
++ (instancetype) futureWithValueFromBlock:(id (^)(void))fn
+{
+  return [[CLJFuture alloc] initWithBlock:fn];
+}
 
 - (instancetype) initWithBlock:(id (^)(void))blockName
 {
   self = [super init];
   if (self) {
-
-  self.valueQueue = dispatch_queue_create("valuequeue", DISPATCH_QUEUE_SERIAL);
-  self.isRealized = NO;
-
-  __weak __typeof(self) weakSelf = self;
-  dispatch_async(self.valueQueue, ^{
-    __strong __typeof(weakSelf) strongSelf = weakSelf;
-    strongSelf.value = blockName();
-    strongSelf.isRealized = YES;
-  });
+    self.valueQueue = dispatch_queue_create("CLJFuture", DISPATCH_QUEUE_SERIAL);
+    self.isRealized = NO;
+    
+    __weak __typeof(self) weakSelf = self;
+    dispatch_async(self.valueQueue, ^{
+      __strong __typeof(weakSelf) strongSelf = weakSelf;
+      strongSelf.value = blockName();
+      strongSelf.isRealized = YES;
+    });
   }
   return self;
 }

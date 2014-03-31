@@ -13,7 +13,7 @@ typedef id(^valueReturning_t)(void);
 @interface CLJFuture : NSObject
 
 /** Creates a future, containing the value returned by fn */
-- (instancetype) initWithBlock:(id (^)(void))fn;
++ (instancetype) futureWithValueFromBlock:(id (^)(void))fn;
 
 /** Tells if the future has been realized */
 @property (assign,nonatomic,readonly) BOOL isRealized;
