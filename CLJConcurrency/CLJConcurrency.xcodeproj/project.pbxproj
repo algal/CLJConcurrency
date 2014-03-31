@@ -16,6 +16,7 @@
 		5E2D5D2718E921310064B400 /* libCLJConcurrency.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2D5D0F18E921310064B400 /* libCLJConcurrency.a */; };
 		5E2D5D2D18E921310064B400 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D5D2B18E921310064B400 /* InfoPlist.strings */; };
 		5E2D5D2F18E921310064B400 /* CLJConcurrencyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D5D2E18E921310064B400 /* CLJConcurrencyTests.m */; };
+		5E2D5D3A18E9238A0064B400 /* CLJFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D5D3918E9238A0064B400 /* CLJFuture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		5E2D5D2A18E921310064B400 /* CLJConcurrencyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CLJConcurrencyTests-Info.plist"; sourceTree = "<group>"; };
 		5E2D5D2C18E921310064B400 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5E2D5D2E18E921310064B400 /* CLJConcurrencyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLJConcurrencyTests.m; sourceTree = "<group>"; };
+		5E2D5D3818E9238A0064B400 /* CLJFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLJFuture.h; sourceTree = "<group>"; };
+		5E2D5D3918E9238A0064B400 /* CLJFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLJFuture.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,8 @@
 				5E2D5D1718E921310064B400 /* CLJConcurrency.h */,
 				5E2D5D1918E921310064B400 /* CLJConcurrency.m */,
 				5E2D5D1518E921310064B400 /* Supporting Files */,
+				5E2D5D3818E9238A0064B400 /* CLJFuture.h */,
+				5E2D5D3918E9238A0064B400 /* CLJFuture.m */,
 			);
 			path = CLJConcurrency;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E2D5D3A18E9238A0064B400 /* CLJFuture.m in Sources */,
 				5E2D5D1A18E921310064B400 /* CLJConcurrency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
