@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5E2D5D1318E921310064B400 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2D5D1218E921310064B400 /* Foundation.framework */; };
-		5E2D5D1818E921310064B400 /* CLJConcurrency.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5E2D5D1718E921310064B400 /* CLJConcurrency.h */; };
-		5E2D5D1A18E921310064B400 /* CLJConcurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D5D1918E921310064B400 /* CLJConcurrency.m */; };
 		5E2D5D2118E921310064B400 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2D5D2018E921310064B400 /* XCTest.framework */; };
 		5E2D5D2218E921310064B400 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2D5D1218E921310064B400 /* Foundation.framework */; };
 		5E2D5D2418E921310064B400 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E2D5D2318E921310064B400 /* UIKit.framework */; };
@@ -17,6 +15,8 @@
 		5E2D5D2D18E921310064B400 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D5D2B18E921310064B400 /* InfoPlist.strings */; };
 		5E2D5D2F18E921310064B400 /* CLJConcurrencyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D5D2E18E921310064B400 /* CLJConcurrencyTests.m */; };
 		5E2D5D3A18E9238A0064B400 /* CLJFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D5D3918E9238A0064B400 /* CLJFuture.m */; };
+		5E9CBF3D19352F86003A8FDA /* CLJDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9CBF3C19352F86003A8FDA /* CLJDelay.m */; };
+		5E9CBF4019352F97003A8FDA /* CLJPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9CBF3F19352F97003A8FDA /* CLJPromise.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				5E2D5D1818E921310064B400 /* CLJConcurrency.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,8 +45,6 @@
 		5E2D5D0F18E921310064B400 /* libCLJConcurrency.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCLJConcurrency.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2D5D1218E921310064B400 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5E2D5D1618E921310064B400 /* CLJConcurrency-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLJConcurrency-Prefix.pch"; sourceTree = "<group>"; };
-		5E2D5D1718E921310064B400 /* CLJConcurrency.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLJConcurrency.h; sourceTree = "<group>"; };
-		5E2D5D1918E921310064B400 /* CLJConcurrency.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLJConcurrency.m; sourceTree = "<group>"; };
 		5E2D5D1F18E921310064B400 /* CLJConcurrencyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CLJConcurrencyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2D5D2018E921310064B400 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5E2D5D2318E921310064B400 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -56,6 +53,10 @@
 		5E2D5D2E18E921310064B400 /* CLJConcurrencyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLJConcurrencyTests.m; sourceTree = "<group>"; };
 		5E2D5D3818E9238A0064B400 /* CLJFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLJFuture.h; sourceTree = "<group>"; };
 		5E2D5D3918E9238A0064B400 /* CLJFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLJFuture.m; sourceTree = "<group>"; };
+		5E9CBF3B19352F86003A8FDA /* CLJDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLJDelay.h; sourceTree = "<group>"; };
+		5E9CBF3C19352F86003A8FDA /* CLJDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLJDelay.m; sourceTree = "<group>"; };
+		5E9CBF3E19352F97003A8FDA /* CLJPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLJPromise.h; sourceTree = "<group>"; };
+		5E9CBF3F19352F97003A8FDA /* CLJPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLJPromise.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,11 +114,13 @@
 		5E2D5D1418E921310064B400 /* CLJConcurrency */ = {
 			isa = PBXGroup;
 			children = (
-				5E2D5D1718E921310064B400 /* CLJConcurrency.h */,
-				5E2D5D1918E921310064B400 /* CLJConcurrency.m */,
 				5E2D5D1518E921310064B400 /* Supporting Files */,
 				5E2D5D3818E9238A0064B400 /* CLJFuture.h */,
 				5E2D5D3918E9238A0064B400 /* CLJFuture.m */,
+				5E9CBF3B19352F86003A8FDA /* CLJDelay.h */,
+				5E9CBF3C19352F86003A8FDA /* CLJDelay.m */,
+				5E9CBF3E19352F97003A8FDA /* CLJPromise.h */,
+				5E9CBF3F19352F97003A8FDA /* CLJPromise.m */,
 			);
 			path = CLJConcurrency;
 			sourceTree = "<group>";
@@ -230,7 +233,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E2D5D3A18E9238A0064B400 /* CLJFuture.m in Sources */,
-				5E2D5D1A18E921310064B400 /* CLJConcurrency.m in Sources */,
+				5E9CBF3D19352F86003A8FDA /* CLJDelay.m in Sources */,
+				5E9CBF4019352F97003A8FDA /* CLJPromise.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +415,7 @@
 				5E2D5D3418E921310064B400 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5E2D5D3518E921310064B400 /* Build configuration list for PBXNativeTarget "CLJConcurrencyTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +424,7 @@
 				5E2D5D3718E921310064B400 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

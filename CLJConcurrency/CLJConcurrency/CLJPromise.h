@@ -1,13 +1,13 @@
 //
-//  CLJConcurrency.h
+//  CLJPromise.h
 //  CLJConcurrency
 //
-//  Created by Alexis Gallagher on 2014-03-30.
+//  Created by Alexis Gallagher on 2014-05-27.
 //  Copyright (c) 2014 Bloom FIlter. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface CLJConcurrency : NSObject
+@interface CLJPromise : NSObject
 
 @end
