@@ -10,6 +10,7 @@
 
 #import "CLJFuture.h"
 #import "CLJDelay.h"
+#import "CLJPromise.h"
 
 @interface CLJConcurrencyTests : XCTestCase
 
@@ -84,7 +85,7 @@
   XCTAssertEqualObjects(@(1), n, @"future value");
 }
 
-- (void) testDerefBlocksWithTimeout
+- (void) testFutureDerefBlocksWithTimeout
 {
   NSString * const computedValue = @"computed value";
   NSString * const timeoutValue = @"timeout value";
@@ -124,5 +125,54 @@
   }];
   XCTAssertFalse(futureSum.isRealized, @"delay is incorreectly reporting itself realized");
 }
+
+#pragma mark - tests of CLJPromise
+
+- (void) testPromise
+{
+  CLJPromise * p = [CLJPromise promise];
+  p.value = @1;
+  XCTAssertEqualObjects(p.value, @1, @"promise mangled value");
+}
+
+- (void) testPromiseDerefBlocksWithTimeout
+{
+  NSString * const timeoutValue = @"timeout value";
+  CLJPromise * p = [CLJPromise promise];
+  CFAbsoluteTime const start = CFAbsoluteTimeGetCurrent();
+  id result = [p valueUnlessTimeout:1.5f timeoutValue:timeoutValue];
+  CFAbsoluteTime const end = CFAbsoluteTimeGetCurrent();
+  XCTAssertEqualObjects(timeoutValue, result, @"promise value is not timeout value");
+  XCTAssert(end-start > 1.0f, @"promise timeout deref did not wait");
+}
+
+- (void) testDoubleDelivery
+{
+  CLJPromise * p = [CLJPromise promise];
+  p.value = @1;
+  p.value = @2;
+  XCTAssertEqualObjects(p.value, @1, @"promise not ignoring second deliver");
+}
+
+- (void) testPromiseBlocksOnDeref
+{
+  NSString * const kValueUnset = @"unset";
+  NSString * const kValueSet = @"set";
+  CLJPromise * p = [CLJPromise promise];
+  __block id valueFromPromise = kValueUnset;
+  
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    // try to dereference the promise in a background task
+    valueFromPromise = p.value;
+  });
+  
+  XCTAssertEqualObjects(valueFromPromise, kValueUnset, @"promise returned prematurely");
+  // deliver the promise
+  p.value = kValueSet;
+  // (the background task to read the promise should now complete on its own)
+  sleep(1);
+  XCTAssertEqualObjects(valueFromPromise, kValueSet, @"promise did not delivery correctly");
+}
+
 
 @end

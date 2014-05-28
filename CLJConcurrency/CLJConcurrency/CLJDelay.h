@@ -26,6 +26,8 @@
 @property (assign,nonatomic,readonly) BOOL isRealized;
 
 /** Returns the value returned by fn, computing it if necessary.
+ 
+ @discussion identical to `force` or `deref` in Clojure
  */
 @property (strong,nonatomic,readonly) id value;
 
