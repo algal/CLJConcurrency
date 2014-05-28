@@ -169,7 +169,7 @@
   XCTAssertEqualObjects(valueFromPromise, kValueUnset, @"promise returned prematurely");
   // deliver the promise
   p.value = kValueSet;
-  // (the background task to read the promise should now complete on its own)
+  // (the background task to read the promise should now complete on its own. give it a sec)
   sleep(1);
   XCTAssertEqualObjects(valueFromPromise, kValueSet, @"promise did not delivery correctly");
 }

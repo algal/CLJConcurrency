@@ -11,7 +11,7 @@
 /**
  A promise contains a value that will be provided in the future.
  
- Blocks on read until the value is provided
+ Blocks on access until the value is provided.
  */
 @interface CLJPromise : NSObject
 
