@@ -32,6 +32,8 @@ typedef NS_ENUM(NSInteger, CLJChannelBufferType)
    - Sliding buffer: when full, return from `put` but dump the oldest value in the channel (letting it slide off the channel)
  
  @param items the number of values allowed in the channel, by count (not e.g. by bytes)
+ 
+ @discussion a channel is a thread-safe concurrent blocking FIFO queue. It has different buffer configurations that govern when it blocks on puts. It can also be closed.
 
  @return a fresh channel object
  */
@@ -56,7 +58,8 @@ typedef NS_ENUM(NSInteger, CLJChannelBufferType)
 /**
  Closes a channel.
  
- The channel will no longer accept puts.
+ The channel will no longer accept puts. Data in the channel remains 
+ available for taking, until exhausted, after which takes will return nil.
  */
 - (void) close;
 
