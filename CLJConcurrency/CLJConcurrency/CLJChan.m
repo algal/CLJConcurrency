@@ -103,7 +103,7 @@ typedef NS_ENUM(NSInteger, CLJChanState)
 };
 
 @interface CLJChan()
-
+// track if channel is open, closed, etc..
 @property (assign,nonatomic) CLJChanState chanState;
 
 // Serializes put operations, preserving inter-put order and atomicity
@@ -116,10 +116,10 @@ typedef NS_ENUM(NSInteger, CLJChanState)
 // Semaphore to allow take only when items are available
 @property (strong,nonatomic) dispatch_semaphore_t availableItemsSemaphore;
 
-// Serializes put & take operations, to enforcing put-vs-take atomicity
+// Serializes put & take operations, enforcing put-vs-take atomicity
 @property (strong,nonatomic) dispatch_queue_t serialQueue;
 
-// underlying, thread-unsafe queue structure
+// underlying, thread-unsafe FIFO queue structure
 @property (strong,nonatomic) CLJChanBuffer * buffer;
 
 @end
@@ -158,10 +158,16 @@ typedef NS_ENUM(NSInteger, CLJChanState)
 
 - (void) put:(id) value
 {
+  if (nil == value) {
+    NSLog(@"error: user attempted to add a nil value to a channel. ignoring");
+    return;
+  }
+  
   if (CLJChanStateOpenToNewPuts != self.chanState) {
     return;
   }
   
+
   BOOL const putShouldSometimesBlock = ![self.buffer isUnblockingBuffer];
   
   dispatch_sync(self.putQueue, ^{

@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, CLJChannelBufferType)
  
  @param items the number of values allowed in the channel, by count (not e.g. by bytes)
  
- @discussion a channel is a thread-safe concurrent blocking FIFO queue. It has different buffer configurations that govern when it blocks on puts. It can also be closed.
+ @discussion a channel is a thread-safe concurrent blocking FIFO queue. It has different buffer configurations that govern if it blocks on puts or accepts all puts but dumps some values. A channel can also be closed; once it is closed and empty, take operations return nil instead of blocking and waiting for .
 
  @return a fresh channel object
  */
@@ -43,14 +43,14 @@ typedef NS_ENUM(NSInteger, CLJChannelBufferType)
 /**
  Puts a value into the channel, blocking if it's full and has a fixed buffer.
  
- @param value <#value description#>
+ @param value the value to insert into the channel
  */
 - (void) put:(id) value;
 
 /**
  Takes a value from the channel, blocking if its empty, returning nil if closed.
  
- @return <#return value description#>
+ @return the value from the channel, or nil if it is closed and empty
  */
 - (id) take;
 
