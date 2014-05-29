@@ -44,11 +44,11 @@ First look into basic concurrency primitive and core.async. See if it can all be
 
 Done. 
 
-### CSP ###
+### Channels ###
 
-Core.async. Communicating Sequential Processes (CSP). Golang channels.
+WIP. implementing put, take, close.
 
-Maybe dispatch i/o channels with NSCoding?
+Could later revisit this to use GCD i/o data channels with NSCoding?
 
 
 

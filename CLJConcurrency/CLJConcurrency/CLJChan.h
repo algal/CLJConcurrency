@@ -28,8 +28,8 @@ typedef NS_ENUM(NSInteger, CLJChannelBufferType)
  @param type the channel's buffer type. Buffers differ in their behavior when they are full:
  
    - Fixed buffer: when full, block calls to `put` until the buffer is emptied by a call to `take`. 
-   - Dropping buffer: when full, return from `put` but ignore (drop) the newly put value.
-   - Sliding buffer: when full, return from `put` but dump the oldest value in the channel (letting it slide off the channel)
+   - Dropping buffer: when full, return from `put` but ignores ("drops") the newly put value.
+   - Sliding buffer: when full, return from `put` but dumps the oldest value in the channel (letting it slide off the channel)
  
  @param items the number of values allowed in the channel, by count (not e.g. by bytes)
  
