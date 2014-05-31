@@ -1,8 +1,8 @@
-# CLJConcurrency #
+# CLJConcurrency 
 
 This repo tiptoes toward the question: what would it look like to organize an iOS app using  approaches to concurrency inspired by Clojure?
 
-## Why clojure? ##
+## Why clojure? 
 
 Clojure has thoughtful support for concurrent programming baked into the language at a low level.
 
@@ -22,7 +22,7 @@ Nolen's work on
 
 This last development is especially interesting because in general the Clojure community is not about UI development. But UI development is a key locus for real concurrency challenges, which stem from coordinating user events, UI updates, and higher latency operations. So if Clojure's concurrency facilities are really so great, and such a novel synthesis, there should be an interesting opporuntity here in trying to use them to write GUIs in a new way, no?
 
-## Why does this matter for Objective-C? ##
+## Why does this matter for Objective-C? 
 
 iOS developers deal with concurrency issues routinely, in order to maintain UI responsiveness.
 
@@ -34,19 +34,23 @@ Is there a better way? Folks are doing very interesting work with ReactiveCocoa 
 
 This repo is just an effort to think through that question. Thoughts welcome!
 
-## Notes: planned work ##
+## Notes: planned work 
 
 For now, never mind STM and persistent data structures.
 
 First look into basic concurrency primitive and core.async. See if it can all be implemented on top of GCD using serial queues, semaphores, and I/O channels.
 
-### Futures, promises, delays ###
+### Futures, promises, delays 
 
 Done. 
 
-### Channels ###
+### Basic channel operations
 
-WIP. implementing put, take, close.
+Done: basic operations of put, take, closee. very rudimentary tests. needs more testing.
+
+### Advanced channel operations
+
+Next step: consider what other core operations can be built on top of those, vs requiring work on the implementations. E.g., alt!
 
 Could later revisit this to use GCD i/o data channels with NSCoding?
 
