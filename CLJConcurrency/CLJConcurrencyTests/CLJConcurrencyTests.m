@@ -12,6 +12,7 @@
 #import "CLJDelay.h"
 #import "CLJPromise.h"
 #import "CLJChan.h"
+#import "CLJRendezvous.h"
 
 @interface CLJConcurrencyTests : XCTestCase
 
@@ -309,5 +310,27 @@
   XCTAssertEqualObjects([chan take], @2, @"unexpected value from take");
   
   XCTAssert(nil==[chan take], @"did not get nil from closed empty channel");
+}
+
+#pragma mark CLJRendezvous
+
+- (void)testRendezvousA
+{
+  CLJRendezvous * r = [[CLJRendezvous alloc] init];
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    [r a];
+  });
+  
+  [r b];
+}
+
+- (void)testRendezvousB
+{
+  CLJRendezvous * r = [[CLJRendezvous alloc] init];
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    [r b];
+  });
+  
+  [r a];
 }
 @end

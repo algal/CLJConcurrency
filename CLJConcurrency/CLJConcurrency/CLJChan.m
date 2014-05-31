@@ -60,21 +60,29 @@
  */
 - (void) put:(id) value
 {
+  BOOL const hasSlotForItem = [self.array count] < self.size;
+  
   // if there's space, add an item
-  if ([self.array count] < self.size) {
-    [self.array addObject:value];
-  }
-  else if (self.bufferType == CLJChannelBufferTypeDropping) {
-    return;
-  }
-  else if (self.bufferType == CLJChannelBufferTypeSliding) {
-    // remove object at head
-    [self.array removeObjectAtIndex:0];
-    // add an
+  if (hasSlotForItem) {
     [self.array addObject:value];
   }
   else {
-    NSLog(@"ERROR: put called on a fixed buffer with inadequate capacity. dropping value");
+    if (CLJChannelBufferTypeFixed == self.bufferType) {
+      NSLog(@"warning: adding item beyond original capacity");
+      [self.array addObject:value];
+    }
+    else if (CLJChannelBufferTypeDropping == self.bufferType) {
+      // drop newest
+      return;
+    }
+    else if (CLJChannelBufferTypeSliding == self.bufferType) {
+      // drop oldest item
+      [self.array removeObjectAtIndex:0];
+      [self.array addObject:value];
+    }
+    else {
+      NSLog(@"ERROR: UNknown buffer type");
+    }
   }
 }
 
