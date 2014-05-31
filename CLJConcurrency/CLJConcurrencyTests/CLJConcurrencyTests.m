@@ -177,7 +177,6 @@
 
 #pragma mark - tests of CLJChane
 
-/*
 - (void) testZeroBoundedChan
 {
   id firstInserted = @1;
@@ -200,7 +199,7 @@
 
   XCTAssertEqualObjects(item, firstInserted, @"first inserted does not equal first removed");
 }
- */
+
 
 
 - (void) testBoundedChan

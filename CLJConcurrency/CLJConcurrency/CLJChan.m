@@ -13,7 +13,7 @@
 
 @interface CLJChanBuffer : NSObject
 @property (assign,nonatomic,readonly) CLJChannelBufferType bufferType;
-@property (assign,nonatomic,readonly) NSUInteger items;
+@property (assign,nonatomic,readonly) NSUInteger size;
 - (BOOL) isUnblockingBuffer;
 @end
 
@@ -26,13 +26,13 @@
 @end
 
 @implementation CLJChanBuffer
-- (instancetype) initWithBufferType:(CLJChannelBufferType)type size:(NSUInteger)items
+- (instancetype) initWithBufferType:(CLJChannelBufferType)type size:(NSUInteger)size
 {
   self = [super init];
   if (self) {
     self->_bufferType = type;
-    self->_items = items;
-    self->_array = [NSMutableArray arrayWithCapacity:items];
+    self->_size = size;
+    self->_array = [NSMutableArray arrayWithCapacity:size];
   }
   return self;
 }
@@ -61,7 +61,7 @@
 - (void) put:(id) value
 {
   // if there's space, add an item
-  if ([self.array count] < self.items) {
+  if ([self.array count] < self.size) {
     [self.array addObject:value];
   }
   else if (self.bufferType == CLJChannelBufferTypeDropping) {
