@@ -185,8 +185,69 @@
   [chan put:@2];
   id firstTaken = [chan take];
   XCTAssertEqualObjects(firstTaken, firstInserted, @"first inserted does not equal first removed");
-  chan = nil;
+}
+
+- (void) testDroppingChan
+{
+  id firstInserted = @1;
+  CLJChan * chan = [CLJChan channelWithBufferType:CLJChannelBufferTypeDropping size:3];
+  [chan put:firstInserted];
+  for (NSUInteger i = 0; i < 10; ++i) {
+    [chan put:@2];
+  }
+  id firstTaken = [chan take];
+  XCTAssertEqualObjects(firstTaken, firstInserted, @"first inserted does not equal first removed");
+}
+
+- (void) testSlidingChan
+{
+  id firstInserted = @1;
+  id otherItem = @2;
+  CLJChan * chan = [CLJChan channelWithBufferType:CLJChannelBufferTypeSliding size:3];
+  [chan put:firstInserted];
+  for (NSUInteger i = 0; i < 10; ++i) {
+    [chan put:otherItem];
+  }
+  id firstTaken = [chan take];
+  XCTAssertEqualObjects(firstTaken, otherItem, @"first inserted does not equal later removed");
+}
+
+- (void) testBlockingPut
+{
+  CLJChan * chan = [CLJChan channelWithBufferType:CLJChannelBufferTypeFixed size:2];
+  [chan put:@1];
+  [chan put:@2];
+
+  __block BOOL thirdPutProcessed = NO;
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // will block until take
+    [chan put:@3];
+    thirdPutProcessed = YES;
+  });
+
+  XCTAssert(thirdPutProcessed==NO, @"channel did not block put");
+  [chan take];
+
+  sleep(1);
+
+  XCTAssert(thirdPutProcessed==YES, @"take channel did not unblock channel");
   
+}
+
+- (void) testBlockingTake
+{
+  CLJChan * chan = [CLJChan channelWithBufferType:CLJChannelBufferTypeFixed size:1];
+  
+  __block id val=nil;
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // will block
+    val = [chan take];
+  });
+  
+  [chan put:@1];
+  sleep(1);
+  // take should be processed by now
+  XCTAssertEqual(val, @1, @"take not unblocked");
 }
 
 - (void) testCreateDestroyChan
@@ -201,6 +262,27 @@
   dispatch_semaphore_signal(sema);
   dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
   sema = nil;
+}
+
+- (void) testChanClose
+{
+  CLJChan * chan = [CLJChan channelWithBufferType:CLJChannelBufferTypeFixed size:2];
+ 
+  // fill the channel
+  [chan put:@1];
+  [chan put:@2];
   
+  // close the channel
+  [chan close];
+  
+  // do no-op puts, which should not block
+  for (NSUInteger i = 0; i < 50; ++i) {
+    [chan put:@(i)];
+  }
+  
+  XCTAssertEqualObjects([chan take], @1, @"unexpected value from take");
+  XCTAssertEqualObjects([chan take], @2, @"unexpected value from take");
+  
+  XCTAssert(nil==[chan take], @"did not get nil from closed empty channel");
 }
 @end
