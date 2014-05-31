@@ -150,6 +150,19 @@ typedef NS_ENUM(NSInteger, CLJChanState)
   return self;
 }
 
+- (void) dealloc
+{
+  /*
+   cannot release unbalanced semaphores, so we take the remaining items from
+   the channel here just in order to rebalance them.
+   
+   This may be dangerous because we are sending messages to self within dealloc.
+   */
+  while (![self.buffer empty]) {
+    [self take];
+  }
+}
+
 + (instancetype) channelWithBufferType:(CLJChannelBufferType)type
                                   size:(NSUInteger)items
 {
