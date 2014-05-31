@@ -152,6 +152,7 @@ typedef NS_ENUM(NSInteger, CLJChanState)
 
 - (void) dealloc
 {
+  // FIXME: double check if this implementation is kosher
   /*
    cannot release unbalanced semaphores, so we take the remaining items from
    the channel here just in order to rebalance them.
