@@ -11,6 +11,7 @@
 #import "CLJFuture.h"
 #import "CLJDelay.h"
 #import "CLJPromise.h"
+#import "CLJChan.h"
 
 @interface CLJConcurrencyTests : XCTestCase
 
@@ -174,5 +175,32 @@
   XCTAssertEqualObjects(valueFromPromise, kValueSet, @"promise did not delivery correctly");
 }
 
+#pragma mark - tests of CLJChane
 
+- (void) testBoundedChan
+{
+  id firstInserted = @1;
+  CLJChan * chan = [CLJChan channelWithBufferType:CLJChannelBufferTypeFixed size:3];
+  [chan put:firstInserted];
+  [chan put:@2];
+  id firstTaken = [chan take];
+  XCTAssertEqualObjects(firstTaken, firstInserted, @"first inserted does not equal first removed");
+  chan = nil;
+  
+}
+
+- (void) testCreateDestroyChan
+{
+  CLJChan * chan = [CLJChan channelWithBufferType:CLJChannelBufferTypeFixed size:1];
+  chan = nil;
+}
+
+- (void) testSemaphore
+{
+  dispatch_semaphore_t sema = dispatch_semaphore_create(5);
+  dispatch_semaphore_signal(sema);
+  dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+  sema = nil;
+  
+}
 @end
