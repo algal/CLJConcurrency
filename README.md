@@ -48,6 +48,8 @@ Done.
 
 Done: basic operations of put, take, closee. very rudimentary tests. needs more testing.
 
+Not working for buffer size==0
+
 ### Advanced channel operations
 
 Next step: consider what other core operations can be built on top of those, vs requiring work on the implementations. E.g., alt!

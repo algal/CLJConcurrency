@@ -177,6 +177,32 @@
 
 #pragma mark - tests of CLJChane
 
+/*
+- (void) testZeroBoundedChan
+{
+  id firstInserted = @1;
+  CLJChan * chan = [CLJChan channelWithBufferType:CLJChannelBufferTypeFixed size:0];
+
+  __block id item = nil;
+  __block BOOL putCompleted= NO;
+  __block BOOL takeCompleted= NO;
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // should block
+    [chan put:firstInserted];
+    putCompleted = YES;
+  });
+  
+//  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // should not block
+    item = [chan take];
+    takeCompleted = YES;
+//  });
+
+  XCTAssertEqualObjects(item, firstInserted, @"first inserted does not equal first removed");
+}
+ */
+
+
 - (void) testBoundedChan
 {
   id firstInserted = @1;

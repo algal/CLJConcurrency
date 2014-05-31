@@ -154,11 +154,15 @@ typedef NS_ENUM(NSInteger, CLJChanState)
 {
   // FIXME: double check if this implementation is kosher
   /*
-   cannot release unbalanced semaphores, so we take the remaining items from
-   the channel here just in order to rebalance them.
+   cannot release unbalanced semaphores, so we take the 
+   remaining items from the channel here just in order to rebalance them.
    
    This may be dangerous because we are sending messages to self within dealloc.
    */
+//  for ([self close];
+//       [self take] != nil;
+//       [self take]) { }
+  
   while (![self.buffer empty]) {
     [self take];
   }
@@ -233,7 +237,6 @@ typedef NS_ENUM(NSInteger, CLJChanState)
       dispatch_semaphore_wait(self.availableItemsSemaphore, DISPATCH_TIME_FOREVER);
       
       // assert: there is an item available to take
-      
       dispatch_sync(self.serialQueue, ^{
         retVal = [self.buffer take];
         if (putShouldSometimesBlock) {
