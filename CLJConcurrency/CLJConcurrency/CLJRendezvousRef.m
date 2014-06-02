@@ -35,7 +35,7 @@
 {
   dispatch_semaphore_signal(self.semaSetterArrived);
   dispatch_semaphore_wait(self.semaGetterArrived, DISPATCH_TIME_FOREVER);
-  // assert: a getter thread is ready
+  // assert: a counterpart getter thread is ready
   
   self->_value = value;
   // tell getter thread it can grab the value
@@ -46,7 +46,7 @@
 {
   dispatch_semaphore_signal(self.semaGetterArrived);
   dispatch_semaphore_wait(self.semaSetterArrived, DISPATCH_TIME_FOREVER);
-  // assert: a setter thread is ready
+  // assert: a counterpart setter thread is ready
   dispatch_semaphore_wait(self.semaValueStored, DISPATCH_TIME_FOREVER);
   // assert: value is ready to return
   return self->_value;
