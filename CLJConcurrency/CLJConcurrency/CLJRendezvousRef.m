@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Bloom FIlter. All rights reserved.
 //
 
-#import "RendezvousRef.h"
+#import "CLJRendezvousRef.h"
 
-@interface RendezvousRef ()
+@interface CLJRendezvousRef ()
 @property (strong,nonatomic) dispatch_semaphore_t semaSetterArrived;
 @property (strong,nonatomic) dispatch_semaphore_t semaGetterArrived;
 @property (strong,nonatomic) dispatch_semaphore_t semaValueStored;
 @end
 
-@implementation RendezvousRef
+@implementation CLJRendezvousRef
 {
   id _value;
 }

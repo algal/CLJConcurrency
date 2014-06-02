@@ -13,7 +13,7 @@
 #import "CLJPromise.h"
 #import "CLJChan.h"
 #import "CLJRendezvous.h"
-#import "RendezvousRef.h"
+#import "CLJRendezvousRef.h"
 
 @interface CLJConcurrencyTests : XCTestCase
 
@@ -343,7 +343,7 @@
   id const expectedVal = @1;
   
   NSMutableArray * runorder = [NSMutableArray array];
-  RendezvousRef * r = [[RendezvousRef alloc] init];
+  CLJRendezvousRef * r = [[CLJRendezvousRef alloc] init];
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     [r setValue:expectedVal];
     [runorder addObject:@2];
@@ -361,7 +361,7 @@
 
 - (void)testRendezvousPassGetFirst
 {
-  RendezvousRef * r = [[RendezvousRef alloc] init];
+  CLJRendezvousRef * r = [[CLJRendezvousRef alloc] init];
   
   __block id retVal = nil;
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

@@ -17,7 +17,7 @@
  `setValue:` storing the value before `value` can return it.
  
  */
-@interface RendezvousRef : NSObject
+@interface CLJRendezvousRef : NSObject
 
 - (void) setValue:(id)value;
 - (id) value;
