@@ -13,6 +13,7 @@
 #import "CLJPromise.h"
 #import "CLJChan.h"
 #import "CLJRendezvous.h"
+#import "RendezvousRef.h"
 
 @interface CLJConcurrencyTests : XCTestCase
 
@@ -180,6 +181,9 @@
 
 - (void) testZeroBoundedChan
 {
+  XCTFail(@"not working");
+  return;
+  
   id firstInserted = @1;
   CLJChan * chan = [CLJChan channelWithBufferType:CLJChannelBufferTypeFixed size:0];
 
@@ -333,4 +337,42 @@
   
   [r a];
 }
+
+- (void)testRendezvousPassSetFirst
+{
+  id const expectedVal = @1;
+  
+  NSMutableArray * runorder = [NSMutableArray array];
+  RendezvousRef * r = [[RendezvousRef alloc] init];
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    [r setValue:expectedVal];
+    [runorder addObject:@2];
+  });
+  sleep(1); // give block a chance to run, which it should not take
+  
+  [runorder addObject:@1];
+  id retVal = [r value];
+  
+  id expectedRunOrder = @[@1,@2];
+  
+  XCTAssertEqualObjects(retVal, expectedVal, @"values not equal");
+  XCTAssertEqualObjects(runorder, expectedRunOrder, @"run order incorrect");
+}
+
+- (void)testRendezvousPassGetFirst
+{
+  RendezvousRef * r = [[RendezvousRef alloc] init];
+  
+  __block id retVal = nil;
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    retVal = [r value];
+  });
+  
+  [r setValue:@1];
+  // allow the block to complete and set the value
+  sleep(1);
+  
+  XCTAssertEqualObjects(retVal, @1, @"values not equal");
+}
+
 @end

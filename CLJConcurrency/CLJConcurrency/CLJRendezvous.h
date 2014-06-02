@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ A simple rendezvous. a blocks until b is called, and vice vera.
+
+ Implemented with two sempahores.
+ */
 @interface CLJRendezvous : NSObject
-
-- (void) setValue:(id)value;
-
-- (id) value;
-
 - (void) a;
 - (void) b;
-
 @end

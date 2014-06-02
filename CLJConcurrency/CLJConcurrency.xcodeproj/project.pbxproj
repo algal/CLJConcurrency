@@ -16,6 +16,7 @@
 		5E2D5D2F18E921310064B400 /* CLJConcurrencyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D5D2E18E921310064B400 /* CLJConcurrencyTests.m */; };
 		5E2D5D3A18E9238A0064B400 /* CLJFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D5D3918E9238A0064B400 /* CLJFuture.m */; };
 		5E614ADD193675930032A4C1 /* CLJChan.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E614ADC193675930032A4C1 /* CLJChan.m */; };
+		5E9AF5B3193C1C90001D6065 /* RendezvousRef.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9AF5B2193C1C90001D6065 /* RendezvousRef.m */; };
 		5E9C93BC1939974B007FE009 /* CLJRendezvous.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9C93BB1939974B007FE009 /* CLJRendezvous.m */; };
 		5E9CBF3D19352F86003A8FDA /* CLJDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9CBF3C19352F86003A8FDA /* CLJDelay.m */; };
 		5E9CBF4019352F97003A8FDA /* CLJPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9CBF3F19352F97003A8FDA /* CLJPromise.m */; };
@@ -57,6 +58,8 @@
 		5E2D5D3918E9238A0064B400 /* CLJFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLJFuture.m; sourceTree = "<group>"; };
 		5E614ADB193675930032A4C1 /* CLJChan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLJChan.h; sourceTree = "<group>"; };
 		5E614ADC193675930032A4C1 /* CLJChan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLJChan.m; sourceTree = "<group>"; };
+		5E9AF5B1193C1C90001D6065 /* RendezvousRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RendezvousRef.h; sourceTree = "<group>"; };
+		5E9AF5B2193C1C90001D6065 /* RendezvousRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RendezvousRef.m; sourceTree = "<group>"; };
 		5E9C93BA1939974B007FE009 /* CLJRendezvous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLJRendezvous.h; sourceTree = "<group>"; };
 		5E9C93BB1939974B007FE009 /* CLJRendezvous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLJRendezvous.m; sourceTree = "<group>"; };
 		5E9CBF3B19352F86003A8FDA /* CLJDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLJDelay.h; sourceTree = "<group>"; };
@@ -131,6 +134,8 @@
 				5E614ADC193675930032A4C1 /* CLJChan.m */,
 				5E9C93BA1939974B007FE009 /* CLJRendezvous.h */,
 				5E9C93BB1939974B007FE009 /* CLJRendezvous.m */,
+				5E9AF5B1193C1C90001D6065 /* RendezvousRef.h */,
+				5E9AF5B2193C1C90001D6065 /* RendezvousRef.m */,
 			);
 			path = CLJConcurrency;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 			files = (
 				5E9C93BC1939974B007FE009 /* CLJRendezvous.m in Sources */,
 				5E2D5D3A18E9238A0064B400 /* CLJFuture.m in Sources */,
+				5E9AF5B3193C1C90001D6065 /* RendezvousRef.m in Sources */,
 				5E9CBF3D19352F86003A8FDA /* CLJDelay.m in Sources */,
 				5E9CBF4019352F97003A8FDA /* CLJPromise.m in Sources */,
 				5E614ADD193675930032A4C1 /* CLJChan.m in Sources */,
